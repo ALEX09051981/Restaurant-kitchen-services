@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'catalog'
 ]
+
+AUTH_USER_MODEL = 'catalog.Chef'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
