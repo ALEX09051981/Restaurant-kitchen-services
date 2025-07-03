@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from catalog.views import DishTypeListView, DishTypeDetailView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('dishtypes/', DishTypeListView.as_view(), name='dishtype-list'),
+    path('dishtypes/<int:pk>/', DishTypeDetailView.as_view(), name='dishtype-detail'),
     path('admin/', admin.site.urls),
+
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+
+    # Головна сторінка веде на список dish types або логін, залежно від потреби:
+    path('', DishTypeListView.as_view(), name='home'),
 ]

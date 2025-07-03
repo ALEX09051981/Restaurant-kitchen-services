@@ -1,28 +1,24 @@
 from django.contrib import admin
-from .models import Specialist, Department, Client, Material, Appointment
+from .models import Chef, DishType, Ingredient, Dish
 
-@admin.register(Specialist)
-class SpecialistAdmin(admin.ModelAdmin):
-    list_display = ('username', 'phone', 'department')
-    search_fields = ('username', 'phone')
+@admin.register(Chef)
+class ChefAdmin(admin.ModelAdmin):
+    list_display = ('username', 'phone', 'email', 'first_name', 'last_name')
+    search_fields = ('username', 'phone', 'email', 'first_name', 'last_name')
 
-@admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
+@admin.register(DishType)
+class DishTypeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
-@admin.register(Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'phone', 'email', 'specialist', 'department')
-    search_fields = ('full_name', 'phone', 'email')
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
 
-@admin.register(Material)
-class MaterialAdmin(admin.ModelAdmin):
-    list_display = ('name', 'department', 'quantity', 'threshold')
-    list_filter = ('department',)
-
-@admin.register(Appointment)
-class AppointmentAdmin(admin.ModelAdmin):
-    list_display = ('client', 'specialist', 'department', 'scheduled_time')
-    list_filter = ('department', 'scheduled_time')
-    search_fields = ('client__full_name', 'specialist__username')
+@admin.register(Dish)
+class DishAdmin(admin.ModelAdmin):
+    list_display = ('name', 'dish_type',)
+    search_fields = ('name',)
+    list_filter = ('dish_type', 'chefs')
+    filter_horizontal = ('chefs', 'ingredients')

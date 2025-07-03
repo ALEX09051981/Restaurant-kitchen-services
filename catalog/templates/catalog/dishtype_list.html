@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Типи страв</h1>
+  <ul>
+    {% for dt in dishtypes %}
+      <li><a href="{% url 'dishtype-detail' dt.pk %}">{{ dt.name }}</a></li>
+    {% empty %}
+      <li>Типи страв відсутні.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
