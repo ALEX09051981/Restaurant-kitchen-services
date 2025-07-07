@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Підтвердження видалення{% endblock %}
+{% block title %}Delete Confirmation{% endblock %}
 
 {% block content %}
-<h2>Ви дійсно хочете видалити "{{ object }}"?</h2>
+  <h2>Are you sure you want to delete "{{ object }}"?</h2>
 
-<form method="post">
+  <form method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Видалити</button>
-    <a href="{% if view.model == 'DishType' %}{% url 'catalog:dishtype-list' %}{% elif view.model == 'Dish' %}{% url 'catalog:dish-list' %}{% elif view.model == 'Chef' %}{% url 'catalog:chef-list' %}{% elif view.model == 'Ingredient' %}{% url 'catalog:ingredient-list' %}{% endif %}" class="btn btn-secondary">Скасувати</a>
-</form>
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{{ view.success_url }}" class="btn btn-secondary">Cancel</a>
+  </form>
 {% endblock %}

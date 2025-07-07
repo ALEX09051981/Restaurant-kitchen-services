@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}{{ view.object|default:"Створення" }}{% endblock %}
+{% block title %}{{ view.object|default:"Create" }}{% endblock %}
 
 {% block content %}
 <h2>
     {% if view.object %}
-        Редагувати {{ view.object }}
+        Edit {{ view.object }}
     {% else %}
-        Створити новий запис
+        Create new record
     {% endif %}
 </h2>
 
@@ -16,8 +16,18 @@
     {{ form.as_p }}
 
     <button type="submit" class="btn btn-primary">
-        {% if view.object %}Зберегти{% else %}Створити{% endif %}
+        {% if view.object %}Save{% else %}Create{% endif %}
     </button>
-    <a href="{% if view.model == 'DishType' %}{% url 'catalog:dishtype-list' %}{% elif view.model == 'Dish' %}{% url 'catalog:dish-list' %}{% elif view.model == 'Chef' %}{% url 'catalog:chef-list' %}{% elif view.model == 'Ingredient' %}{% url 'catalog:ingredient-list' %}{% endif %}" class="btn btn-secondary">Скасувати</a>
+    <a href="{% if model_name == 'dishtype' %}
+                 {% url 'catalog:dishtype-list' %}
+             {% elif model_name == 'dish' %}
+                 {% url 'catalog:dish-list' %}
+             {% elif model_name == 'chef' %}
+                 {% url 'catalog:chef-list' %}
+             {% elif model_name == 'ingredient' %}
+                 {% url 'catalog:ingredient-list' %}
+             {% else %}
+                 {% url 'home' %}
+             {% endif %}" class="btn btn-secondary">Cancel</a>
 </form>
 {% endblock %}
