@@ -1,14 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>{{ dishtype.name }}</h1>
-  <p>{{ dishtype.description }}</p>
-
-  <h2>Страви цього типу:</h2>
-  <ul>
-    {% for dish in dishtype.dishes.all %}
-      <li>{{ dish.name }}</li>
-    {% empty %}
-      <li>Страви відсутні.</li>
-    {% endfor %}
-  </ul>
+  <h1>{{ object.name }}</h1>
+  <a href="{% url 'dishtype-update' object.pk %}">Edit</a>
+  <a href="{% url 'dishtype-delete' object.pk %}">Delete</a>
+  <a href="{% url 'dishtype-list' %}">Back to list</a>
 {% endblock %}

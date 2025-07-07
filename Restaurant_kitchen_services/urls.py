@@ -14,18 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
-from catalog.views import DishTypeListView, DishTypeDetailView
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from catalog.views import HomeRedirectView
 
 urlpatterns = [
-    path('dishtypes/', DishTypeListView.as_view(), name='dishtype-list'),
-    path('dishtypes/<int:pk>/', DishTypeDetailView.as_view(), name='dishtype-detail'),
-    path('admin/', admin.site.urls),
-
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-
-    # Головна сторінка веде на список dish types або логін, залежно від потреби:
-    path('', DishTypeListView.as_view(), name='home'),
+    path("admin/", admin.site.urls),
+    path("catalog/", include("catalog.urls")),
+    path("", HomeRedirectView.as_view(), name="home"),
 ]

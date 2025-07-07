@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ view.object|default:"Створення" }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if view.object %}
+        Редагувати {{ view.object }}
+    {% else %}
+        Створити новий запис
+    {% endif %}
+</h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+        {% if view.object %}Зберегти{% else %}Створити{% endif %}
+    </button>
+    <a href="{% if view.model == 'DishType' %}{% url 'catalog:dishtype-list' %}{% elif view.model == 'Dish' %}{% url 'catalog:dish-list' %}{% elif view.model == 'Chef' %}{% url 'catalog:chef-list' %}{% elif view.model == 'Ingredient' %}{% url 'catalog:ingredient-list' %}{% endif %}" class="btn btn-secondary">Скасувати</a>
+</form>
+{% endblock %}
