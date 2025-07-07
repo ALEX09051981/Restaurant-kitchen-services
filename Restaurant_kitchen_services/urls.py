@@ -18,10 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from catalog.views import HomeRedirectView
+from kitchen.views import HomeRedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("catalog/", include("catalog.urls")),
+    path("kitchen/", include("kitchen.urls")),
     path("", HomeRedirectView.as_view(), name="home"),
 ]

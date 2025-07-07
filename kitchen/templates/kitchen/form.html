@@ -19,13 +19,13 @@
         {% if view.object %}Save{% else %}Create{% endif %}
     </button>
     <a href="{% if model_name == 'dishtype' %}
-                 {% url 'catalog:dishtype-list' %}
+                 {% url 'kitchen:dishtype-list' %}
              {% elif model_name == 'dish' %}
-                 {% url 'catalog:dish-list' %}
+                 {% url 'kitchen:dish-list' %}
              {% elif model_name == 'chef' %}
-                 {% url 'catalog:chef-list' %}
+                 {% url 'kitchen:chef-list' %}
              {% elif model_name == 'ingredient' %}
-                 {% url 'catalog:ingredient-list' %}
+                 {% url 'kitchen:ingredient-list' %}
              {% else %}
                  {% url 'home' %}
              {% endif %}" class="btn btn-secondary">Cancel</a>

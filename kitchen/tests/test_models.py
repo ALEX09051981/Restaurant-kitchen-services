@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from catalog.models import Chef, DishType, Ingredient, Dish
+from kitchen.models import Chef, DishType, Ingredient, Dish
 
 User = get_user_model()
 

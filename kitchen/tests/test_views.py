@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from catalog.models import Dish, Chef, DishType, Ingredient
+from kitchen.models import Dish, Chef, DishType, Ingredient
 
 User = get_user_model()
 
@@ -15,10 +15,10 @@ class BaseViewTestMixin:
 
 class DishListViewTest(BaseViewTestMixin, TestCase):
     def test_list_view_status_and_template(self):
-        url = reverse("catalog:dish-list")
+        url = reverse("kitchen:dish-list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/dish_list.html")
+        self.assertTemplateUsed(response, "kitchen/dish_list.html")
 
 class DishCreateViewTest(BaseViewTestMixin, TestCase):
     def setUp(self):
@@ -26,7 +26,7 @@ class DishCreateViewTest(BaseViewTestMixin, TestCase):
         self.dishtype = DishType.objects.create(name="Soup")
 
     def test_create_dish(self):
-        url = reverse("catalog:dish-create")
+        url = reverse("kitchen:dish-create")
         data = {
             "name": "Tomato Soup",
             "dish_type": self.dishtype.id,
@@ -42,25 +42,25 @@ class DishCreateViewTest(BaseViewTestMixin, TestCase):
 
 class ChefListViewTest(BaseViewTestMixin, TestCase):
     def test_list_view(self):
-        url = reverse("catalog:chef-list")
+        url = reverse("kitchen:chef-list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/chef_list.html")
+        self.assertTemplateUsed(response, "kitchen/chef_list.html")
 
 # -------------------- DishType --------------------
 
 class DishTypeListViewTest(BaseViewTestMixin, TestCase):
     def test_list_view(self):
-        url = reverse("catalog:dishtype-list")
+        url = reverse("kitchen:dishtype-list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/dishtype_list.html")
+        self.assertTemplateUsed(response, "kitchen/dishtype_list.html")
 
 # -------------------- Ingredient --------------------
 
 class IngredientListViewTest(BaseViewTestMixin, TestCase):
     def test_list_view(self):
-        url = reverse("catalog:ingredient-list")
+        url = reverse("kitchen:ingredient-list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "catalog/ingredient_list.html")
+        self.assertTemplateUsed(response, "kitchen/ingredient_list.html")
