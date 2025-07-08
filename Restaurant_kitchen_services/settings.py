@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "catalog",
+    "kitchen",
 ]
 
-AUTH_USER_MODEL = "catalog.Chef"
+AUTH_USER_MODEL = "kitchen.Chef"
 LOGIN_REDIRECT_URL = "/"
 
 MIDDLEWARE = [
