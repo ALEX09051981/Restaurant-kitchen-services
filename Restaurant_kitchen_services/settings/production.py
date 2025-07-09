@@ -19,6 +19,7 @@ DATABASES = {
         "HOST": os.environ["POSTGRES_HOST"],
         "PORT": int(os.environ["POSTGRES_DB_PORT"]),
         "OPTIONS": {
-           'sslmode': 'require',
+            "sslmode": "require",
+        },
     }
 }
