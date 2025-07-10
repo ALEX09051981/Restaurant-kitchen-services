@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}My Site{% endblock %}</title>
+    <title>Restaurant Kitchen Services</title>
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+    {% endif %}
+    {% block content %}{% endblock %}
 </body>
 </html>

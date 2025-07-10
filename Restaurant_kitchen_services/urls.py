@@ -17,11 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
 from kitchen.views import HomeRedirectView
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("kitchen/", include("kitchen.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("", HomeRedirectView.as_view(), name="home"),
 ]

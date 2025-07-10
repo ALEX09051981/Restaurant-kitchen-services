@@ -4,7 +4,7 @@ from django.views.generic import (
     ListView,
     CreateView,
     UpdateView,
-    DeleteView,
+    DeleteView, TemplateView,
 )
 from django.shortcuts import redirect
 from django.views import View
@@ -12,9 +12,8 @@ from django.views import View
 from .models import Dish, Chef, DishType, Ingredient
 
 
-class HomeRedirectView(View):
-    def get(self, request, *args, **kwargs):
-        return redirect("/admin/")
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = "home.html"
 
 
 class DishListView(LoginRequiredMixin, ListView):
@@ -179,3 +178,10 @@ class IngredientDeleteView(LoginRequiredMixin, DeleteView):
     model = Ingredient
     template_name = "kitchen/confirm_delete.html"
     success_url = reverse_lazy("kitchen:ingredient-list")
+
+
+class HomeRedirectView(View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("kitchen:dish-list")
+        return redirect("login")

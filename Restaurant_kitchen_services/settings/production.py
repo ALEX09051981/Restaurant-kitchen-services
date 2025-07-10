@@ -1,12 +1,13 @@
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    os.environ.get('RENDER_EXTERNAL_HOSTNAME', "restaurant-kitchen-services-g13m.onrender.com")
-]
+RENDER_HOST = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
+if RENDER_HOST:
+    ALLOWED_HOSTS.append(RENDER_HOST)
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
