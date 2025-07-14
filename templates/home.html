@@ -1,6 +1,45 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block content %}
-<h1>Welcome, {{ user.username }}!</h1>
-<p>This is your dashboard.</p>
+{% block body_class %}
+
+  <div class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center position-relative"
+     style="background-image: url('{% static 'images/minimal_kitchen.jpg' %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+  <span class="mask bg-gradient-dark opacity-5 position-absolute top-0 start-0 w-100 h-100"></span>
+
+  <div class="container position-relative z-index-2">
+    <h1 class="text-white mb-3">Restaurant Kitchen Services</h1>
+    <p class="lead text-white mb-4">A Django-powered platform for modern culinary management</p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-3">
+        <h2 class="text-gradient text-primary">{{ num_dish }}</h2>
+        <p class="text-white">Total Dishes</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h2 class="text-gradient text-success">{{ num_dish_type }}</h2>
+        <p class="text-white">Dish Types</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h2 class="text-gradient text-danger">{{ num_user }}</h2>
+        <p class="text-white">Registered Users</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="text-center" style="padding-left: 40%;">
+  <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+  <a href="{% url 'kitchen:dish-create' %}" class="btn btn-outline-light d-flex align-items-center gap-2">
+    <i class="material-icons-round">restaurant_menu</i> Add Dish
+  </a>
+  <a href="{% url 'kitchen:dishtype-create' %}" class="btn btn-outline-light d-flex align-items-center gap-2">
+    <i class="material-icons-round">category</i> Add Dish Type
+  </a>
+  <a href="{% url 'kitchen:chef-create' %}" class="btn btn-outline-light d-flex align-items-center gap-2">
+    <i class="material-icons-round">person</i> Add Chef
+  </a>
+  </div>
 {% endblock %}

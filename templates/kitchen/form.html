@@ -1,0 +1,33 @@
+{% extends "kitchen/../base.html" %}
+
+{% block title %}{{ view.object|default:"Create" }}{% endblock %}
+
+{% block content %}
+<h2>
+    {% if view.object %}
+        Edit {{ view.object }}
+    {% else %}
+        Create new record
+    {% endif %}
+</h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+        {% if view.object %}Save{% else %}Create{% endif %}
+    </button>
+    <a href="{% if model_name == 'dishtype' %}
+                 {% url 'kitchen:dishtype-list' %}
+             {% elif model_name == 'dish' %}
+                 {% url 'kitchen:dish-list' %}
+             {% elif model_name == 'chef' %}
+                 {% url 'kitchen:chef-list' %}
+             {% elif model_name == 'ingredient' %}
+                 {% url 'kitchen:ingredient-list' %}
+             {% else %}
+                 {% url 'home' %}
+             {% endif %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="row w-100">
+
+
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
+        <div class="text-center mb-4">
+          <img src="{% static 'images/minimal_kitchen.jpg' %}" alt="Logo" style="width: 100px;">
+          <h4 class="text-gradient text-primary mt-3">Restaurant Kitchen Services</h4>
+          <p class="text-muted">Enter your credentials</p>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <p class="text-center mt-3">
+          <a href="{% url 'accounts:signup' %}" class="text-decoration-none">Don't have an account? Sign up</a>
+        </p>
+      </div>
+    </div>
+
+
+    <div class="col-md-6 d-none d-md-block position-relative p-0">
+      <div class="h-100 w-100" style="
+        background-image: url('{% static 'images/minimal_kitchen.jpg' %}');
+        background-size: cover;
+        background-position: center;">
+
+        <div class="position-absolute top-0 end-0 m-3">
+          <a href="https://docs.djangoproject.com/" class="btn btn-sm btn-light me-2">Documentation</a>
+          <a href="https://github.com/your-repo" class="btn btn-sm btn-light">Project Repo</a>
+        </div>
+        <div class="position-absolute bottom-0 start-0 m-3 text-white">
+          <h5 class="fw-bold">Restaurant Kitchen System</h5>
+          <p class="mb-0">© Alexey Koparov</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+

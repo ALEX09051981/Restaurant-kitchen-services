@@ -24,3 +24,4 @@ DATABASES = {
         },
     }
 }
+WHITENOISE_MANIFEST_STRICT = False

@@ -1,13 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Restaurant Kitchen Services</title>
+  <div class="text-center" style="padding-left: 40%;">
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>{% block title %}Restaurant Kitchen{% endblock %}</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+
+  <link href="{% static 'material_kit/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'material_kit/css/nucleo-svg.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'material_kit/css/material-kit.min.css' %}" />
 </head>
-<body>
-    {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
-    {% endif %}
-    {% block content %}{% endblock %}
+<body class="{% block body_class %}{% endblock %}
+
+  {% include 'includes/navigation.html' %}
+  {% block content %}{% endblock %}
+
+  <script src="{% static 'material_kit/js/core/jquery.min.js' %}"></script>
+  <script src="{% static 'material_kit/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'material_kit/js/core/bootstrap-material-design.min.js' %}"></script>
+  <script src="{% static 'material_kit/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'material_kit/js/material-kit.min.js' %}"></script>
 </body>
 </html>

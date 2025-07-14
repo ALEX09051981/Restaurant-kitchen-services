@@ -6,7 +6,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView, TemplateView,
 )
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views import View
 
 from .models import Dish, Chef, DishType, Ingredient
@@ -14,6 +14,13 @@ from .models import Dish, Chef, DishType, Ingredient
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["num_dish"] = Dish.objects.count()
+        context["num_dish_type"] = DishType.objects.count()
+        context["num_user"] = Chef.objects.count()
+        return context
 
 
 class DishListView(LoginRequiredMixin, ListView):
@@ -185,3 +192,8 @@ class HomeRedirectView(View):
         if request.user.is_authenticated:
             return redirect("kitchen:dish-list")
         return redirect("login")
+
+
+def home(request):
+    dishes = Dish.objects.select_related('dish_type', 'cook').all()
+    return render(request, 'home.html', {'dishes': dishes})
